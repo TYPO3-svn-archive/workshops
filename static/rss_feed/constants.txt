@@ -1,0 +1,28 @@
+###
+# These are the default TS-constants for RSS feeds from tx_workshops
+##
+
+plugin.workshops {
+	displayXML {
+		# cat=plugin.workshops/file/80; type=file[html,htm,tmpl,txt]; label= RSS-Workshops rss v2 Template File: XML template for RSS 2.0 feed
+		rss2_tmplFile = EXT:workshops/res/rss_2.tmpl
+		# cat=plugin.workshops/file/81; type=file[html,htm,tmpl,txt]; label= RSS-Workshops rss v0.91 Template File: XML template for RSS 0.91 feed.
+		rss091_tmplFile = EXT:workshops/res/rss_0_91.tmpl
+		# cat=plugin.workshops//82; type=int+; label= RSS-Workshops XML-Format: Defines the format of the workshops RSS feed. Possible values are: 'rss091' and 'rss2' (rdf and atom will follow)
+		xmlFormat = rss2
+		# cat=plugin.workshops//83; type=text; label= RSS-Workshops XML-Title: The title of your workshops RSS feed. (required for rss091, rss2)
+		xmlTitle = your-server.org: Latest Workshops
+		# cat=plugin.workshops//84; type=text; label= RSS-Workshops XML-Link: The link to your hompage. (required for rss091, rss2)
+		xmlLink = http://your-server.org/
+		# cat=plugin.workshops//85; type=text; label= RSS-Workshops XML-Description: The description of your workshops RSS feed. (required for rss091, rss2)
+		xmlDesc = Latest workshops
+		# cat=plugin.workshops//86; type=int+; label= RSS-Workshops XML-Language: Your site's language. A list of allowable values for <language> in RSS is available at http://backend.userland.com/stories/storyReader$16 (required for rss091, optional for rss2)
+		xmlLang = en
+		# cat=plugin.workshops//87; type=int+; label= RSS-Workshops XML-Icon: Provide an icon for your workshops feed with preferred size of 16x16 px, can be gif, jpeg or png. (required for rss091, optional for rss2)
+		xmlIcon = EXT:workshops/ext_icon.gif
+		# cat=plugin.workshops//88; type=int+; label= RSS-Workshops XML-Limit: max workshops items in RSS feeds.
+		xmlLimit = 10
+		# cat=plugin.workshops//89; type=boolean; label= RSS-Workshops XML-Caching: Allow caching for the RSS feed
+		xmlCaching = 1
+	}
+}

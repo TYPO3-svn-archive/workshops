@@ -1,0 +1,65 @@
+###
+# This is the default TS-setup RSS feed from sp_workshops
+# this template has to be included after the sp_workshops main TS-setup because it depends on some settings from there
+#
+# (see Section Reference in the manual for more options & parameters)
+#
+# tx_workshops
+###
+
+
+
+
+# - - - - - - - - - - - - - -  render XML workshops   - - - - - - - - - - - - -  #
+
+# point your RSS reader to: http://your-server.org/index.php?type=100
+
+plugin.workshops {
+	displayXML {
+		rss091_tmplFile = {$plugin.workshops.displayXML.rss091_tmplFile}
+		rss2_tmplFile = {$plugin.workshops.displayXML.rss2_tmplFile}
+
+		xmlFormat = {$plugin.workshops.displayXML.xmlFormat}
+		# possibile values: rss091 / rss2 /
+		# (planning: rdf / atom)
+
+		xmlTitle = {$plugin.workshops.displayXML.xmlTitle}
+		xmlLink = {$plugin.workshops.displayXML.xmlLink}
+		xmlDesc = {$plugin.workshops.displayXML.xmlDesc}
+		xmlLang = {$plugin.workshops.displayXML.xmlLang}
+		xmlIcon = {$plugin.workshops.displayXML.xmlIcon}
+		xmlLimit = {$plugin.workshops.displayXML.xmlLimit}
+		xmlCaching = {$plugin.workshops.displayXML.xmlCaching}
+
+		title_stdWrap.htmlSpecialChars = 1
+		title_stdWrap.htmlSpecialChars.preserveEntities = 1
+		subheader_stdWrap.stripHtml = 1
+		subheader_stdWrap.htmlSpecialChars = 1
+		subheader_stdWrap.htmlSpecialChars.preserveEntities = 1
+		subheader_stdWrap.crop = 100 | ... | 1
+		subheader_stdWrap.ifEmpty.field = bodytext
+		xmlLastBuildDate = 1
+	}
+}
+
+
+## This enables the xml news feed
+xmlnews = PAGE
+xmlnews {
+	typeNum = 100
+
+	10 < plugin.workshops
+	10.pid_list >
+	10.pid_list = {$plugin.workshops.pid_list}
+	10.singlePid = {$plugin.workshops.singlePid}
+	10.defaultCode = XML
+
+
+	config {
+		disableAllHeaderCode = 1
+		additionalHeaders = Content-type:text/xml
+		xhtml_cleaning = 0
+	}
+}
+
+

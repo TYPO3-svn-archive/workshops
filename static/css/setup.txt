@@ -1,0 +1,328 @@
+
+plugin.workshops {
+	_CSS_DEFAULT_STYLE (
+
+		/*-----------------------------------  clearer  -----------------------------------*/
+		/* prevent floated images from overlapping the div-containers they are wrapped in  */
+
+		.workshops-list-container HR.clearer, .workshops-single-item HR.clearer, .workshops-latest-container HR.clearer{
+			clear:right;
+			height:1px;
+			border:1px solid #F9FFE5;
+		}
+
+		.workshops-latest-container HR.clearer {
+			clear:left;
+		}
+
+
+
+		/*-----------------------------------  workshops LATEST view  -----------------------------------*/
+
+		.workshops-latest-container {
+			border:1px solid #333;
+			background-color:#BBE53A;
+		}
+
+		.workshops-latest-container H2,.workshops-latest-gotoarchive {
+			color:#fff;
+			padding:3px;
+			margin:3px;
+			border:1px solid #666;
+			/*background-color:#D8FA70;*/
+			background-color:#769024;
+		}
+
+		.workshops-latest-gotoarchive {
+			font-weight:bold;
+			margin-top:5px;
+		}
+
+		.workshops-latest-gotoarchive A:LINK, .workshops-latest-gotoarchive A:VISITED, .workshops-latest-gotoarchive A:HOVER {
+			color:#fff;
+		}
+
+		.workshops-latest-gotoarchive A {
+			color:#fff;
+		}
+
+		.workshops-latest-item {
+			padding:3px;
+			margin:3px;
+			border:1px solid #666;
+			background-color:#F9FFE5;
+		}
+
+		.workshops-latest-item IMG {
+			margin-bottom:5px;
+			margin-right:5px;
+			border:1px solid #666;
+			float:left;
+		}
+
+		.workshops-latest-category IMG {
+			float: none;
+			border:none;
+			margin:0px;
+		}
+
+		.workshops-latest-date,.workshops-latest-morelink,.workshops-latest-category {
+			font-size:9px;
+		}
+
+		.workshops-latest-morelink {
+			height:12px;
+		}
+
+		.workshops-latest-morelink A {
+			float:right;
+		}
+
+
+		/*--------------------------------- workshops LIST view  -----------------------------------*/
+		.workshops-list-container {
+			border:1px solid #000;
+			background-color:#BBE53A;
+		}
+
+
+		.workshops-list-item {
+			padding:3px;
+			margin:3px;
+			border:1px solid #666;
+			background-color:#F9FFE5;
+		}
+
+		.workshops-search-form {
+			padding:3px;
+			margin-bottom:5px;
+			border:1px solid #666;
+			background-color:#F9FFE5;
+		}
+
+		.workshops-search-emptyMsg{
+			margin:0px;
+		}
+
+		.workshops-search-form FORM {
+			margin:0px;
+		}
+
+		.workshops-list-container H3 {
+			margin-bottom: 5px;
+			padding: 2px;
+			border-bottom: 1px solid #769024;
+			background-color: #769024;
+		}
+
+		.workshops-list-container H3 A:LINK,.workshops-list-container H3 A:VISITED,.workshops-list-container H3 A:HOVER {
+			color:#fff;
+			padding-left:2px;
+		}
+
+		.workshops-list-container H3 A {
+			color:#fff;
+		}
+
+		.workshops-list-container P {
+			padding-left:3px;
+		}
+
+		.workshops-list-date {
+			float: right;
+			color: #3E551C;
+			width: 180px;
+			text-align: right;
+			height: 20px;
+			margin-top: -2px;
+			margin-right: -2px;
+			font-size: 9px;
+			font-weight: normal;
+			background-color: #F9FFE5;
+		}
+
+		.workshops-list-imgcaption {
+			float: right;
+			padding-top:3px;
+			padding-right:3px;
+			font-size: 9px;
+		}
+
+		.workshops-list-container IMG {
+			float: right;
+			border:1px solid #666;
+			margin-bottom:5px;
+			margin-right:2px;
+			margin-left:5px;
+		}
+
+		.workshops-list-category IMG {
+			float: none;
+			border:none;
+			margin:0px;
+		}
+
+		.workshops-list-morelink,.workshops-list-category {
+			font-size:9px;
+			margin-left:3px;
+		}
+
+		.workshops-list-morelink  {
+			margin-bottom:3px;
+		}
+
+		.workshops-list-browse {
+			text-align: center;
+		}
+
+
+		/*---------------------------------  workshops Page-Browser ---------------------------------*/
+		.workshops-browsebox {
+			margin:3px;
+			border:1px solid #666;
+			padding:3px;
+			background-color:#F9FFE5;
+		}
+
+		.workshops-browsebox TD {
+			font-size: 10px;
+		}
+
+		.workshops-browsebox-strong, .workshops-browsebox-SCell {
+			font-weight: bold;
+		}
+
+		.workshops-browsebox-SCell P,.workshops-browsebox TD P{
+			margin:0px;
+		}
+
+		.workshops-browsebox-SCell {
+			background-color: #BBE53A;
+			border:1px solid #666;
+		}
+
+		.workshops-search-emptyMsg {
+			font-size: 11px;
+			margin-left: 10px;
+		}
+
+
+		/*--------------------------------- workshops SINGLE view  ---------------------------------*/
+		.workshops-single-item {
+			padding:5px;
+			margin-bottom:5px;
+			border:1px solid #666;
+			background-color:#F9FFE5;
+		}
+
+		.workshops-single-item H2 {
+			font-size: 16px;
+			font-weight:bold;
+			color: #85A600;
+			margin-bottom: 0px;
+		}
+
+		.workshops-single-item H3 {
+			margin-bottom: 15px;
+		}
+
+		.workshops-single-img {
+			float: right;
+			margin-left:5px;
+		}
+
+		.workshops-single-imgcaption {
+			padding:3px;
+			clear:both;
+		}
+
+		.workshops-single-category {
+			float: right;
+		}
+
+		.workshops-single-backlink, .workshops-single-backlink a {
+			font-weight: bold;
+			font-size: 10px;
+			margin-bottom: 15px;
+			margin-top: 10px;
+		}
+
+		.workshops-single-timedata {
+			float: right;
+		}
+
+		.workshops-single-timedata, .workshops-single-author,.workshops-single-imgcaption {
+			font-size: 9px;
+		}
+
+		.workshops-single-author {
+			padding-bottom: 3px;
+		}
+
+		.workshops-single-additional-info {
+			background-color: #BBE53A;
+			clear: both;
+			margin-top: 15px;
+			border: 1px solid #666;
+			padding:3px;
+			padding-bottom:0px;
+		}
+
+		.workshops-single-related,.workshops-single-files,.workshops-single-links  {
+			border: 1px solid #666;
+			margin:0px;
+			margin-bottom: 3px;
+			padding:3px;
+			background-color:#F9FFE5;
+		}
+
+		.workshops-single-related DD, .workshops-single-links DD, .workshops-single-files DD {
+			margin-left:20px;
+		}
+
+		.workshops-single-related DT, .workshops-single-links DT, .workshopws-single-files DT {
+			font-weight: bold;
+			font-size: 11px;
+			margin-left:5px;
+			width:90%;
+		}
+
+		/*--------------------------------- workshops Archivemenu (AMENU) --------------------------------- */
+		.workshops-amenu-container {
+			margin-top:10px;
+			padding:3px;
+			border:1px solid #333;
+			background-color:#BBE53A;
+		}
+
+		.workshopws-amenu-container LI {
+			padding-bottom:1px;
+		}
+
+		.workshopws-amenu-container UL {
+			padding:3px;
+			margin-top:5px;
+			margin-left:0px;
+			margin-bottom:0px;
+			border:1px solid #666;
+			background-color:#F9FFE5;
+			list-style-type: none;
+		}
+
+		.workshops-amenu-container H2 {
+			color:#fff;
+			padding:3px;
+			border:1px solid #666;
+			background-color:#769024;
+		}
+
+		.workshops-amenu-item-year {
+			font-weight: bold;
+			border: 1px solid #666;
+			padding: 2px;
+			background-color: #769024;
+			color:#fff;
+		}
+	)
+
+}
