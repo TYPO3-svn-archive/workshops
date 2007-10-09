@@ -1,0 +1,93 @@
+<?php
+/**
+* Default  TCA_DESCR for "workshops"
+*/
+
+$LOCAL_LANG = Array (
+	'default' => Array (
+		'.description' => 'workshop data administration - overview and details',
+		'.details' => '\'Workshop\' items overview and link down to a page with the full story.',
+		'_.seeAlso' => 'tt_content:list_type,tx_workshops_cat',
+	),
+	'dk' => Array (
+	),
+	'de' => Array (
+		'.description' => 'Seminardaten Verwaltung',
+		'.details' => '\'Seminar\'-Daten in einer Übersicht anzeigen und mit einem Link auf den Volltext der Seminar-Beschreibung versehen.',
+	),
+	'no' => Array (
+	),
+	'it' => Array (
+	),
+	'fr' => Array (
+	),
+	'es' => Array (
+	),
+	'nl' => Array (
+	),
+	'cz' => Array (
+	),
+	'pl' => Array (
+	),
+	'si' => Array (
+	),
+	'fi' => Array (
+	),
+	'tr' => Array (
+	),
+	'se' => Array (
+	),
+	'pt' => Array (
+	),
+	'ru' => Array (
+	),
+	'ro' => Array (
+	),
+	'ch' => Array (
+	),
+	'sk' => Array (
+	),
+	'lt' => Array (
+	),
+	'is' => Array (
+	),
+	'hr' => Array (
+	),
+	'hu' => Array (
+	),
+	'gl' => Array (
+	),
+	'th' => Array (
+	),
+	'gr' => Array (
+	),
+	'hk' => Array (
+	),
+	'eu' => Array (
+	),
+	'bg' => Array (
+	),
+	'br' => Array (
+	),
+	'et' => Array (
+	),
+	'ar' => Array (
+	),
+	'he' => Array (
+	),
+	'ua' => Array (
+	),
+	'lv' => Array (
+	),
+	'jp' => Array (
+	),
+	'vn' => Array (
+	),
+	'ca' => Array (
+	),
+	'ba' => Array (
+	),
+	'kr' => Array (
+	),
+);
+?>

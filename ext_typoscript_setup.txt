@@ -1,0 +1,317 @@
+###
+# This is the default TS-setup for the workshops standard template: EXT:workshops/pi/workshops_template.html
+#
+# (see Section Reference in the manual for more options & parameters)
+#
+# workshops
+###
+
+# Includes the workshopsLib:
+includeLibs.workshops = EXT:workshops/pi/class.tx_workshops.php
+
+
+plugin.workshops = USER
+plugin.workshops {
+	userFunc = tx_workshops->main_workshops
+
+	# template file
+	templateFile = {$plugin.workshops.file.templateFile}
+
+	# page to get the workshopsitems from -> "Starting point"
+	pid_list = {$plugin.workshops.pid_list}
+
+	# page for the Single view
+	singlePid = {$plugin.workshops.singlePid}
+
+	# page id for the archive link in "LATEST" template
+	archiveTypoLink.parameter = {$plugin.workshops.archiveTypoLink.parameter}
+
+	recursive = 2
+	code.field = select_key
+	allowCaching = {$plugin.workshops.allowCaching}
+	limit = {$plugin.workshops.limit}
+	latestLimit = {$plugin.workshops.latestLimit}
+	backPid = {$plugin.workshops.backPid}
+
+	# Search
+	searchPid =
+	emptySearchAtStart = 1
+
+	# parse the 'back to list' link through htmlspecialchars()
+	hscBackLink = 1
+
+	# substitute pagetitle with title of workshops article
+	substitutePagetitle = 1
+
+	noItemsToListMsg_stdWrap.wrap = <p>|</p>
+
+	# Rendering of workshops items. re-use the RTE parseFunc configuration for normal content
+	general_stdWrap {
+		parseFunc < tt_content.text.20.parseFunc
+	}
+
+	# Pagebrowser settings
+	pageBrowser {
+		maxPages = 10
+		# set this to '0' if you want the pagebrowser to display only numbers
+		showPBrowserText = 0
+		tableParams = cellpadding=2 align=center
+		showResultCount = 1
+	}
+
+	# Display language labels and/or flags
+	showLangLabels = 0
+	showFlags = 0
+	flagImage {
+		file.maxW = 16
+	}
+
+	# Category settings
+	catImageMode = {$plugin.workshops.catImageMode}
+	catTextMode = {$plugin.workshops.catTextMode}
+	maxCatImages = 10
+	maxCatTexts = 10
+
+	# category modes:
+	# 0 = don't care about category selections
+	# 1 = display selected categories
+	# -1 = display deselected categories
+	categoryMode = 0
+
+	catImageMaxWidth = 25
+	catImageMaxHeight = 25
+
+	# - - - - - - - - -  Archive settings  - - - - - - - - - - - #
+
+	datetimeDaysToArchive = {$plugin.workshops.datetimeDaysToArchive}
+	enableArchiveDate = 1
+	pageTypoLink.parameter.current = 1
+
+	reverseAMenu = 1
+	archiveMenuNoEmpty = 1
+
+	# the Condition in the following COA highlights the active Archive month
+	archiveTitleCObject = COA
+	archiveTitleCObject {
+		10 = TEXT
+		10 {
+			field = start
+			strftime = %B %Y
+			wrap = <strong>|</strong>
+			if {
+				value.field = start
+				equals.data = GPvar:tx_workshops|pS
+			}
+		}
+		20 = TEXT
+		20 {
+			field = start
+			strftime = %B %Y
+			if {
+				value.field = start
+				equals.data = GPvar:tx_workshops|pS
+				negate = 1
+			}
+		}
+	}
+	archiveEmptyMsg_stdWrap.wrap =
+	searchEmptyMsg_stdWrap.wrap =
+
+
+	# - - - - - - - - -    workshops Files:    - - - - - - - - - - -  #
+
+	files_stdWrap.wrap = <dl class="workshops-single-files">|</dl>
+	filesHeader_stdWrap.wrap = <dt>|</dt>
+	files {
+		path = uploads/media/
+		icon = 1
+		stdWrap.wrap = <dd>|</dd>
+	}
+
+
+	# - - - - - - -   Settings for Related Workshops:  - - - - - - - -  #
+
+	related_stdWrap.wrap =  <dl class="workshops-single-related">|</dl>
+	relatedHeader_stdWrap.wrap = <dt>|</dt>
+
+	# icon for related workshops
+	tmp.5 = IMAGE
+	tmp.5 {
+		file = EXT:workshops/ext_icon.gif
+		file.width = 11
+		file.height = 12
+		wrap = | &nbsp;
+	}
+
+	# end-wrap for the getRelated objects
+	tmp.20 = TEXT
+	tmp.20 {
+		field = datetime
+		strftime = %d-%m-%y %H:%M
+		wrap = &nbsp;-&nbsp; |
+	}
+
+	# Build the list of related workshops:
+	getRelatedCObject = COA
+	getRelatedCObject {
+		# groupBy =
+		orderBy = datetime desc
+
+		10=CASE
+		10.key.field=type
+		# settings for 'normal' related workshops
+		10.default=COA
+
+		10.default {
+			wrap = <dd> | </dd>
+			5 < plugin.workshops.tmp.5
+			10 = TEXT
+			10.field = title
+			10.typolink.parameter = {$plugin.workshops.singlePid}
+			10.typolink.additionalParams.data=register:itemsAddParams
+			20 < plugin.workshops.tmp.20
+		}
+		# settings for related workshops, that point to internal pages
+		10.1=COA
+		10.1 {
+			wrap = <dd> | </dd>
+			5 < plugin.workshops.tmp.5
+			5.file=EXT:workshops/res/ext_article.gif
+			10 = TEXT
+			10.field = title
+			10.typolink.parameter.field = page
+			20 < plugin.workshops.tmp.20
+		}
+		# settings for related workshops, that point to external URLs
+		10.2=COA
+		10.2 {
+			wrap = <dd> | </dd>
+			5 < plugin.workshops.tmp.5
+			5.file=EXT:workshops/res/ext_exturl.gif
+			10 = TEXT
+			10.field = title
+			10.typolink.parameter.field = ext_url
+			20 < plugin.workshops.tmp.20
+		}
+	}
+
+
+	# - - - - - - - - - - - rendering of SINGLE workshops   - - - - - - - - - - -  #
+
+	displaySingle {
+		age_stdWrap.age = 1
+		textWorkshopsAge_stdWrap.wrap =
+		date_stdWrap.strftime= %d.%m.%y
+		time_stdWrap.strftime= %H:%M
+		title_stdWrap.wrap =
+		subheader_stdWrap.wrap = <h3>|</h3>
+		subheader_stdWrap.trim=1
+		subheader_stdWrap.required=1
+		author_stdWrap.typolink.parameter.field = author_email
+		author_stdWrap.wrap = <p class="workshops-single-author">|</p>
+
+		addInfo_stdWrap.wrap = <div class="workshops-single-additional-info"> | </div>
+
+		links_stdWrap.wrap = <dl class="workshops-single-links">|</dl>
+		linksHeader_stdWrap.wrap = <dt>|</dt>
+		linksItem_stdWrap.wrap = <dd>|</dd>
+
+		noItemsIdMsg_stdWrap = <p> | </p>
+		imageCount=4
+		imgAltTextField = imagecaption
+		imageWrapIfAny = <div class="workshops-single-img"> | </div>
+
+		category_stdWrap.wrap = <div class="workshops-single-category"> | </div>
+		email_stdWrap.setContentToCurrent = 1
+		email_stdWrap.typolink.parameter.current = 1
+		caption_stdWrap.wrap = <p class="workshops-single-imgcaption"> | </p>
+		caption_stdWrap.trim=1
+		# caption_stdWrap.required=1
+
+	}
+	displaySingle.image {
+		file.maxW = {$plugin.workshops.singleMaxW}
+		file.maxH = {$plugin.workshops.singleMaxH}
+		wrap =
+		imageLinkWrap = 1
+		imageLinkWrap {
+			enable = 1
+			bodyTag = <body>
+			wrap = <a href="javascript:close();"> | </a>
+			width = 500m
+			height = 500
+			JSwindow = 1
+			JSwindow.newWindow = 1
+			JSwindow.expand = 17,20
+		}
+
+	}
+
+	# - - - - - - - - - - - rendering of LATEST workshops   - - - - - - - - - - -  #
+	displayLatest {
+		age_stdWrap.age = 1
+		date_stdWrap.strftime= %d.%m.%y
+		time_stdWrap.strftime= %H:%M
+		caption_stdWrap.if.directReturn = 0
+		subheader_stdWrap.crop = 100 | ... | 1
+		subheader_stdWrap.ifEmpty.field = bodytext
+		imageCount=1
+		imgAltTextField = imagecaption
+		imageWrapIfAny =
+		category_stdWrap.wrap = <div class="workshops-latest-category"> | </div>
+		categoryItem_stdWrap.wrap =
+	}
+	displayLatest.image < displaySingle.image
+	displayLatest.image {
+		file.maxW = {$plugin.workshops.latestMaxW}
+		file.maxH = {$plugin.workshops.latestMaxH}
+		imageLinkWrap = 1
+		stdWrap.spaceAfter = 0
+	}
+
+	# - - - - - - - - - -    rendering of LIST workshops    - - - - - - - - - - -  #
+	displayList {
+		age_stdWrap.age = 1
+		textWorkshopsAge_stdWrap.wrap =
+		date_stdWrap.strftime= %A %d. of %B %Y
+		time_stdWrap.strftime= %d/%m/%y %H:%M
+
+		# Don't display caption in List view
+		caption_stdWrap.if.directReturn = 0
+
+		title_stdWrap.wrap =
+		subheader_stdWrap.stripHtml = 1
+		subheader_stdWrap.crop = 230 | ... | 1
+		subheader_stdWrap.ifEmpty.field = bodytext
+		author_stdWrap.wrap =
+		imageCount=1
+		imageWrapIfAny =
+
+		category_stdWrap.wrap = <div class="workshops-list-category"> | </div>
+		imgAltTextField = imagecaption
+	}
+	displayList.image < displaySingle.image
+	displayList.image {
+		file.maxW = {$plugin.workshops.listMaxW}
+		file.maxH = {$plugin.workshops.listMaxH}
+		imageLinkWrap = 1
+	}
+	# Example for overriding values from locallang.php with other values
+	_LOCAL_LANG.de {
+	# more = [weiterlesen...]
+	}
+}
+
+
+
+
+# - - - - - - - - - -  display Archive in yearly periods - - - - - - - - -  #
+
+    # include the amenu script
+includeLibs.itemsAmenuUserFunc = EXT:workshops/res/workshops_amenuUserFunc2.php
+    # call user function
+plugin.workshops.itemsAmenuUserFunc = user_processAmenu
+
+
+# test
+tt_content.list.20.workshops =< plugin.workshops

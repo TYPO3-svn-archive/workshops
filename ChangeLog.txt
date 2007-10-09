@@ -1,0 +1,3 @@
+2005-02-06: registering of extension key; first upload
+                   typoscript-setup per default, css and rss has to be selected in template
+2005-02-01: Copying 'tt_news' extension (v 2.0), renaming extension to 'workshops', deleteing deprecated templates and stuff
