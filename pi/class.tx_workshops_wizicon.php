@@ -2,7 +2,7 @@
 	/***************************************************************
 	*  Copyright notice
 	*
-	*  (c) 2005 Stefan Padberg <epost@stefan-padberg.de>
+	*  (c) 2005 Dipl.-Ing. Stefan Padberg <post@webskriptorium.com>
 	*  All rights reserved
 	*
 	*  This script is part of the Typo3 project. The Typo3 project is
@@ -26,7 +26,7 @@
 	*
 	* $Id: class.tx_workshops_wizicon.php,v 0.0.1 2005/01/17 19:12:30 spadberg Exp $
 	*
-	* @author Stefan Padberg <epost@stefan-padberg.de>
+	* @author Dipl.-Ing. Stefan Padberg <post@webskriptorium.com>
 	*/
 
 	/**

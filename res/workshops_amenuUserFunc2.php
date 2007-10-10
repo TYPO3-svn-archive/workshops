@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005 Stefan Padberg <epost@stefan-padberg.de>
+*  (c) 2005 Dipl.-Ing. Stefan Padberg <post@webskriptorium.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -30,7 +30,7 @@
  *
  * $Id: workshops_amenuUserFunc2.php,v 0.0.1 2005/01/17 09:55:30 spadberg Exp $
  *
- * @author	Stefan Padberg <epost@stefan-padberg.de>
+ * @author	Dipl.-Ing. Stefan Padberg <post@webskriptorium.com>
  */
 
 /**
@@ -41,7 +41,7 @@
   		# include the php script
 		includeLibs.workshopsAmenuUserFunc = EXT:workshops/res/example_amenuUserFunc.php
 		# call user function
-		plugin.workshops.workshopsAmenuUserFunc = user_processAmenu
+		plugin.workshops.workshopsAmenuUserFunc = user_procAmenu_workshops
 
 
 */
@@ -52,7 +52,7 @@
  * @param	[type]		$conf: ...
  * @return	array		the processed Array
  */
-function user_processAmenu($amenuItemsArr, $conf){
+function user_procAmenu_workshops($amenuItemsArr, $conf){
 	$lConf = $conf['parentObj']->conf; // get the config array from parent object
   	#debug($lConf);
 	#debug ($amenuItemsArr);

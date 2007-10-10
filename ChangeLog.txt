@@ -1,3 +1,12 @@
-2005-02-06: registering of extension key; first upload
-                   typoscript-setup per default, css and rss has to be selected in template
+Rev. 0.3.0
+2006-05-13: CALENDAR type added for overview over workshops in calendar style
+
+Rev. 0.2.0
+2005-02-08: many typos corrected
+
+
+Rev. 0.1.0
+2005-02-06: registering of extension key; first upload to TER
+- typoscript-setup per default, css and rss has to be selected in template
+
 2005-02-01: Copying 'tt_news' extension (v 2.0), renaming extension to 'workshops', deleteing deprecated templates and stuff

@@ -29,9 +29,11 @@ plugin.workshops {
 	allowCaching = 1
 
 	# cat=plugin.workshops/dims/110; type=int+; label= single-image max Width: Max width for an image displayed in SINGLE template
-	singleMaxW = 240
+	singleMaxW = 120
 	# cat=plugin.workshops/dims/120; type=int+; label= single-image max height: Max height for an image displayed in SINGLE template
-	singleMaxH = 180
+	singleMaxH = 90
+	# cat=plugin.workshops/dims/120; type=int+; label= single-image link path: path to file linked with image displayed in SINGLE template
+	singleImgPath = uploads/media/
 	# cat=plugin.workshops/dims/130; type=int+; label= latest-image max width: Max width for an image displayed in LATEST template
 	latestMaxW = 60
 	# cat=plugin.workshops/dims/140; type=int+; label= latest-image max height: Max height for an image displayed in LATEST template
