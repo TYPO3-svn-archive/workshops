@@ -25,11 +25,19 @@ These are substituted in all workshop item displaying templates:
 <em>Markers:</em>
 ITEM_UID - ID number (uid) of the workshop item
 ITEM_TITLE - workshop item title
-ITEM_AUTHOR - name of author
-ITEM_EMAIL - email of author
+ITEM_CONTACT - name of contact person
+ITEM_CONTACT_EMAILLINK - email of contact person
+ITEM_CONTACT_EMAIL
+ITEM_CONTACT_PHONE
 ITEM_DATE - date
 ITEM_TIME - time
 ITEM_AGE - age of workshop item in minutes, hours, days or years
+ITEM_DATETIME_BEGINEND - date and time of begin until end of workshop item
+ITEM_CITY - place of the workshop
+ITEM_ADDRESS - address of the workshop
+ITEM_STATUS - booking state
+ITEM_REGFORMFILE - Registrationform file
+
 ITEM_SUBHEADER - subheader, if empty main content is inserted here in LIST and LATEST
 ITEM_CONTENT - main content
 ITEM_LINKS - item related links
@@ -37,7 +45,7 @@ ITEM_CATEGORY - item category
 ITEM_CATEGORY_IMAGE - item category image
 ITEM_RELATED - links to related items
 ITEM_IMAGE - item images
-
+ITEM_FORM - item registration form
 PAGE_UID - Page id of the parent page (pid)
 PAGE_TITLE - Title of the parent page of the workshop item
 PAGE_AUTHOR - Page author, if any
@@ -97,14 +105,15 @@ LINK_NEXT - used in the pagebrowser
 				<span class="workshops-latest-date"><!--###LINK_ITEM###-->###ITEM_DATE### ###ITEM_TIME###<!--###LINK_ITEM###--></span>
 				<h3><!--###LINK_ITEM###-->###ITEM_TITLE###<!--###LINK_ITEM###--></h3>
 				<!--###LINK_ITEM###-->###ITEM_IMAGE###<!--###LINK_ITEM###-->
-				###ITEM_SUBHEADER###<hr class="clearer" />
-				###CATWRAP_B### ###TEXT_CAT_LATEST### ###ITEM_CATEGORY### ###ITEM_CATEGORY_IMAGE### ###CATWRAP_E### 
-                <div class="workshops-latest-morelink"><!--###LINK_ITEM###-->###MORE###<!--###LINK_ITEM###--></div>
+				###ITEM_SUBHEADER###
+				###ITEM_DATETIME_BEGINEND###
+				<hr class="clearer" /> 
+				<div class="workshops-latest-morelink"><!--###LINK_ITEM###-->###MORE###<!--###LINK_ITEM###--></div>
 			  </div>
 
 		<!-- ###WORKSHOP### end-->		
 	<!-- ###CONTENT###  end -->
-<div class="workshops-latest-gotoarchive"><!--###LINK_ARCHIVE###-->###GOTOARCHIVE###<!--###LINK_ARCHIVE###--></div>
+	<div class="workshops-latest-gotoarchive"><!--###LINK_ARCHIVE###-->###GOTOARCHIVE###<!--###LINK_ARCHIVE###--></div>
 </div>
 <!-- ###TEMPLATE_LATEST### end -->
 
@@ -132,6 +141,7 @@ LINK_NEXT - used in the pagebrowser
 	This is the template for the list of workshops in the archive or workshops page or search
 -->
 <div class="workshops-list-container">
+
 	<!-- ###CONTENT### begin
 		  This is the part of the template substituted with the list of workshops: 
 	-->
@@ -140,20 +150,61 @@ LINK_NEXT - used in the pagebrowser
 			Template for a single item 
 		-->
 			<div class="workshops-list-item">				
-			  <h3>
-<span class="workshops-list-date">###ITEM_DATE###</span>
-<!--###LINK_ITEM###-->###ITEM_TITLE###<!--###LINK_ITEM###--></h3>
-			  <!--###LINK_ITEM###-->###ITEM_IMAGE###<!--###LINK_ITEM###-->
-			 ###ITEM_SUBHEADER###
-			###CATWRAP_B### ###TEXT_CAT### ###ITEM_CATEGORY### ###ITEM_CATEGORY_IMAGE### ###CATWRAP_E###
-			<div class="workshops-list-morelink"><!--###LINK_ITEM###-->###MORE###<!--###LINK_ITEM###--></div>
+				<h3><span class="workshops-list-date">###ITEM_DATE###</span>
+					<!--###LINK_ITEM###-->###ITEM_TITLE###<!--###LINK_ITEM###-->
+				</h3>
+				<!--###LINK_ITEM###-->###ITEM_IMAGE###<!--###LINK_ITEM###-->
+				<h4>###ITEM_SUBHEADER###</h4>
+				###ITEM_DATETIME_BEGINEND###
+				
+				<div class="workshops-list-morelink"><!--###LINK_ITEM###-->###MORE###<!--###LINK_ITEM###--></div>
 
-<hr class="clearer" /></div>
+				<hr class="clearer" />
+
+			</div>
 		<!-- ###WORKSHOP### end-->
 	<!-- ###CONTENT###  end -->
 	<div class="workshops-list-browse">###BROWSE_LINKS###</div>
 </div>
 <!-- ###TEMPLATE_LIST### end -->
+
+
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+<hr />
+<br />
+<br />
+<br />
+<h3>TEMPLATE_LIST_FOR_NAV_MENU</h3>
+<em>This is the template for the list of workshops to be displayed in a navigation menu and included via TypoScript.</em>
+<br />
+<br />
+<br />
+<br />
+<!-- ###TEMPLATE_LIST_FOR_NAV_MENU### begin
+	This is the template for the list of workshops to be displayed in a navigation menu and included via TypoScript.
+-->
+
+	<!-- ###CONTENT### begin
+		  This is the part of the template substituted with the list of workshops: 
+	-->
+
+		<!-- ###WORKSHOP### begin 
+			Template for a single item 
+		-->
+
+		<tr><td class="bullet">&nbsp;</td><td class="bullet">-</td><td colspan="2"><!--###LINK_ITEM###--> ###ITEM_TITLE### <!--###LINK_ITEM###--></td></tr>
+
+		<!-- ###WORKSHOP### end-->
+	<!-- ###CONTENT###  end -->
+	
+<!-- ###TEMPLATE_LIST_FOR_NAV_MENU### end -->
 
 
 
@@ -179,26 +230,39 @@ LINK_NEXT - used in the pagebrowser
 -->
 
 <div class="workshops-single-item">
-	<div class="workshops-single-timedata">###ITEM_DATE### ###ITEM_TIME### ###TEXT_ITEM_AGE### ###ITEM_AGE###</div>
-	<h2>###NEWS_TITLE###</h2>
-	###CATWRAP_B### ###TEXT_CAT### ###ITEM_CATEGORY### ###ITEM_CATEGORY_IMAGE### ###CATWRAP_E###
-	###ITEM_AUTHOR###
-	###ITEM_SUBHEADER###
-	###ITEM_IMAGE### 
+	<div class="workshops-single-timedata">###ITEM_DATE### ###ITEM_TIME###</div>
+
+	<h2>###ITEM_TITLE###</h2>
+
+	<h3>###ITEM_SUBHEADER###</h3>
+
+	###ITEM_CONTACT###
+	###ITEM_CONTACT_PHONE###
+
+	<p class="workshops-single-datetime-beginend">###ITEM_DATETIME_BEGINEND###</p>
+
+	###ITEM_IMAGE### ###ITEM_STATUS###
+
 	###ITEM_CONTENT###
-	<hr class="clearer" />
+
 	###ADDINFO_WRAP_B###
-			  
+
 	###TEXT_RELATED###
 	###ITEM_RELATED###
 
 	###TEXT_FILES###
 	###FILE_LINK###				  
-	
+
 	###TEXT_LINKS###
 	###ITEM_LINKS###
 	###ADDINFO_WRAP_E###
-	<div class="workshops-single-backlink"><!--###LINK_ITEM###-->###BACK_TO_LIST###<!--###LINK_ITEM###--></div>
+
+	###COMMENTS###
+
+	<div class="workshops-single-backlink">
+		<!--###LINK_ITEM###-->###BACK_TO_LIST###<!--###LINK_ITEM###-->
+	</div>
+
 </div>		
 <!-- ###TEMPLATE_SINGLE### end -->
 
@@ -219,7 +283,7 @@ LINK_NEXT - used in the pagebrowser
 <br />
 <br />
 <h3>TEMPLATE_SINGLE_RECORDINSERT</h3>
-<em>This subpart is used to display single worksho items with the &quot;Insert Records&quot; content element </em><br />
+<em>This subpart is used to display single workshop items with the &quot;Insert Records&quot; content element </em><br />
 <br />
 <br />
 
@@ -227,16 +291,22 @@ LINK_NEXT - used in the pagebrowser
 	This subpart is used to display single workshop items
 -->
 <div class="workshops-single-item">
-	<div class="workshops-single-timedata">###ITEM_DATE### ###ITEM_TIME### ###TEXT_ITEM_AGE### ###ITEM_AGE###</div>
-	<h2>###ITEM_TITLE###</h2>
-	###CATWRAP_B### ###TEXT_CAT### ###ITEM_CATEGORY### ###ITEM_CATEGORY_IMAGE### ###CATWRAP_E###
-	###ITEM_AUTHOR###
+	<div class="workshops-single-timedata">###ITEM_DATE### ###ITEM_TIME###</div>
 
-	###ITEM_SUBHEADER###
-	###ITEM_IMAGE### 
+	<h2>###ITEM_TITLE###</h2>
+
+	<h3>###ITEM_SUBHEADER###</h3>
+
+	###ITEM_CONTACT###
+
+	<p class="workshops-single-datetime-beginend">###ITEM_DATETIME_BEGINEND###</p>
+
+	###ITEM_IMAGE### ###ITEM_STATUS###
+
 	###ITEM_CONTENT###
+
 	###ADDINFO_WRAP_B###
-  
+
 	###TEXT_RELATED###
 	###ITEM_RELATED###
 
@@ -245,9 +315,14 @@ LINK_NEXT - used in the pagebrowser
 
 	###TEXT_LINKS###
 	###ITEM_LINKS###
-	##ADDINFO_WRAP_E###
-        ###COMMENTS###
-        <div class="workshops-single-backlink"><!--###LINK_ITEM###-->###BACK_TO_LIST###<!--###LINK_ITEM###--></div>
+	###ADDINFO_WRAP_E###
+
+	###COMMENTS###
+
+	<div class="workshops-single-backlink">
+		<!--###LINK_ITEM###-->###BACK_TO_LIST###<!--###LINK_ITEM###-->
+	</div>
+
 </div>		
 <!-- ###TEMPLATE_SINGLE_RECORDINSERT### end -->
 <br />
@@ -259,35 +334,94 @@ LINK_NEXT - used in the pagebrowser
 
 
 
+
+
+
 <br />
 <br />
 <br />
-<h3>TEMPLATE_SINGLE_FORUM</h3>
-<em>This subpart is used to display single workshop items with the &quot;Insert Records&quot; content element </em><br />
+<br />
+<hr />
+<br />
+<br />
+<br />
+<h3>TEMPLATE_FORM</h3>
+<em>This subpart is used to display the corresponding registration form of a single workshop item</em><br />
 <br />
 <br />
 
-<!-- ###TEMPLATE_SINGLE_FORUM### begin
-	This subpart is used to display single workshop items
+<!-- ###TEMPLATE_FORM### begin
+	This subpart is used to display the corresponding registration form of a single workshop item
+-->
+
+<div class="workshops-single-item">
+	<div class="workshops-single-timedata">
+		###ITEM_DATE### ###ITEM_TIME###
+	</div>
+
+	<h2>Registration</h2>
+
+	<h3>###ITEM_TITLE###</h3>
+
+	###ITEM_FORM### 
+
+	<hr class="clearer" />
+
+	<div class="workshops-single-backlink">
+		<!--###LINK_ITEM###-->###BACK_TO_LIST###<!--###LINK_ITEM###-->
+	</div>
+
+</div>		
+<!-- ###TEMPLATE_FORM### end -->
+
+
+
+
+
+
+
+
+
+
+
+
+<br />
+<br /><hr />
+<br />
+<br />
+<br />
+<h3>TEMPLATE_FORM_RECORDINSERT</h3>
+
+<em>This subpart is used to display the corresponding registration form of a single workshop item
+with the &quot;Insert Records&quot; content element </em><br />
+<br />
+<br />
+
+<!-- ###TEMPLATE_FORM_RECORDINSERT### begin
+	This subpart is used to display the corresponding registration form of a single workshop item
+	with the &quot;Insert Records&quot; content element
 -->
 <div class="workshops-single-item">
-			<div class="workshops-single-timedata">###ITEM_DATE### ###ITEM_TIME### ###TEXT_ITEM_AGE### ###ITEM_AGE###</div>
-			<h2>###ITEM_TITLE###</h2>
-			###CATWRAP_B### ###TEXT_CAT### ###ITEMS_CATEGORY### ###ITEM_CATEGORY_IMAGE### ###CATWRAP_E###
-			###ITEM_AUTHOR###
-			
-			
-			
-			###ITEM_SUBHEADER###
-			
-			###ITEM_IMAGE### 
-			###ITEM_CONTENT###
+	<div class="workshops-single-timedata">
+		###ITEM_DATE### ###ITEM_TIME###
+	</div>
 
-<div class="workshops-single-backlink">	
-<!--###LINK_ITEM###-->###BACK_TO_LIST###<!--###LINK_ITEM###-->
-</div>			</div>		
-<!-- ###TEMPLATE_SINGLE_FORUM### end -->
+	<h2>Registration</h2>
 
+	<h3>###ITEM_TITLE###</h3>
+
+	###ITEM_FORM### 
+
+	<hr class="clearer" />
+
+	<div class="workshops-single-backlink">
+		<!--###LINK_ITEM###-->###BACK_TO_LIST###<!--###LINK_ITEM###-->
+	</div>
+
+</div>		
+<!-- ###TEMPLATE_FORM_RECORDINSERT### end -->
+<br />
+<hr />
 
 
 
@@ -325,6 +459,17 @@ LINK_NEXT - used in the pagebrowser
 	</ul>
 </div>
 <!-- ###TEMPLATE_ARCHIVE### end -->
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br />

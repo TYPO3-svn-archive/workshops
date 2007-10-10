@@ -16,12 +16,15 @@ plugin.workshops {
 
 	# template file
 	templateFile = {$plugin.workshops.file.templateFile}
-
+	_CSS_DEFAULT_STYLE = .workshops-regform {width:400px;border:1px solid #404060;} .workshops-regform-field {clear:both;width:380px;margin:10px;padding:4px;background-color:#e0e0f0;} .workshops-regform-label {float:left;width:160px;text-align:right;margin-right:5px;margin-bottom:5px;padding-right:5px;} .workshops-regform input {height:25px;width:180px;border:1px solid #202040;background-color:white;}  .workshops-regform textarea {height:60px;width:180px;border:1px solid #202040;background-color:white;}
 	# page to get the workshopsitems from -> "Starting point"
 	pid_list = {$plugin.workshops.pid_list}
 
 	# page for the Single view
 	singlePid = {$plugin.workshops.singlePid}
+
+	# page for the Single view
+	regformPid = {$plugin.workshops.regformPid}
 
 	# page id for the archive link in "LATEST" template
 	archiveTypoLink.parameter = {$plugin.workshops.archiveTypoLink.parameter}
@@ -29,12 +32,13 @@ plugin.workshops {
 	recursive = 2
 	code.field = select_key
 	allowCaching = {$plugin.workshops.allowCaching}
+	noPageBrowser = 0
 	limit = {$plugin.workshops.limit}
 	latestLimit = {$plugin.workshops.latestLimit}
 	backPid = {$plugin.workshops.backPid}
 
 	# Search
-	searchPid =
+	searchPid = {$plugin.workshops.searchPid}
 	emptySearchAtStart = 1
 
 	# parse the 'back to list' link through htmlspecialchars()
@@ -48,6 +52,19 @@ plugin.workshops {
 	# Rendering of workshops items. re-use the RTE parseFunc configuration for normal content
 	general_stdWrap {
 		parseFunc < tt_content.text.20.parseFunc
+		editPanel = 1
+#
+#	a reminder:  to check lateron
+#	dont know if this would work, found it somewhere in the forum
+#
+#		editPanel {
+#			allow = edit, new, delete
+#			line=5
+#			label = %s
+#			onlyCurrentPid = 0
+#			previewBorder=2
+#			edit.displayRecord = 1
+#		}
 	}
 
 	# Pagebrowser settings
@@ -77,7 +94,6 @@ plugin.workshops {
 	# 1 = display selected categories
 	# -1 = display deselected categories
 	categoryMode = 0
-
 	catImageMaxWidth = 25
 	catImageMaxHeight = 25
 
@@ -118,6 +134,16 @@ plugin.workshops {
 	searchEmptyMsg_stdWrap.wrap =
 
 
+	# - - - - - - - - -    workshops registrationform file:    - - - - - - - - - - -  #
+
+	regformfile_stdWrap.wrap = <p style="color:blue;">|</p>
+	regformfile {
+		path = uploads/media/
+		icon = 0
+		stdWrap.wrap = <p class="workshops-regformfile">|</p>
+	}
+
+
 	# - - - - - - - - -    workshops Files:    - - - - - - - - - - -  #
 
 	files_stdWrap.wrap = <dl class="workshops-single-files">|</dl>
@@ -135,8 +161,8 @@ plugin.workshops {
 	relatedHeader_stdWrap.wrap = <dt>|</dt>
 
 	# icon for related workshops
-	tmp.5 = IMAGE
-	tmp.5 {
+	temp.5 = IMAGE
+	temp.5 {
 		file = EXT:workshops/ext_icon.gif
 		file.width = 11
 		file.height = 12
@@ -144,8 +170,8 @@ plugin.workshops {
 	}
 
 	# end-wrap for the getRelated objects
-	tmp.20 = TEXT
-	tmp.20 {
+	temp.20 = TEXT
+	temp.20 {
 		field = datetime
 		strftime = %d-%m-%y %H:%M
 		wrap = &nbsp;-&nbsp; |
@@ -164,36 +190,38 @@ plugin.workshops {
 
 		10.default {
 			wrap = <dd> | </dd>
-			5 < plugin.workshops.tmp.5
+			5 < plugin.workshops.temp.5
 			10 = TEXT
 			10.field = title
 			10.typolink.parameter = {$plugin.workshops.singlePid}
-			10.typolink.additionalParams.data=register:itemsAddParams
-			20 < plugin.workshops.tmp.20
+			10.typolink.additionalParams.data=register:itemAddParams
+			20 < plugin.workshops.temp.20
 		}
 		# settings for related workshops, that point to internal pages
 		10.1=COA
 		10.1 {
 			wrap = <dd> | </dd>
-			5 < plugin.workshops.tmp.5
+			5 < plugin.workshops.temp.5
 			5.file=EXT:workshops/res/ext_article.gif
 			10 = TEXT
 			10.field = title
 			10.typolink.parameter.field = page
-			20 < plugin.workshops.tmp.20
+			20 < plugin.workshops.temp.20
 		}
 		# settings for related workshops, that point to external URLs
 		10.2=COA
 		10.2 {
 			wrap = <dd> | </dd>
-			5 < plugin.workshops.tmp.5
+			5 < plugin.workshops.temp.5
 			5.file=EXT:workshops/res/ext_exturl.gif
 			10 = TEXT
 			10.field = title
 			10.typolink.parameter.field = ext_url
-			20 < plugin.workshops.tmp.20
+			20 < plugin.workshops.temp.20
 		}
 	}
+
+#	temp >
 
 
 	# - - - - - - - - - - - rendering of SINGLE workshops   - - - - - - - - - - -  #
@@ -204,11 +232,15 @@ plugin.workshops {
 		date_stdWrap.strftime= %d.%m.%y
 		time_stdWrap.strftime= %H:%M
 		title_stdWrap.wrap =
-		subheader_stdWrap.wrap = <h3>|</h3>
+		subheader_stdWrap.wrap = <typohead type=3>|</typohead>
 		subheader_stdWrap.trim=1
 		subheader_stdWrap.required=1
-		author_stdWrap.typolink.parameter.field = author_email
-		author_stdWrap.wrap = <p class="workshops-single-author">|</p>
+
+		content_stdWrap.wrap = <p class="workshops-single-content">|</p>
+
+		contact_stdWrap.typolink.parameter.field = contact_email
+		contact_stdWrap.wrap = <p class="workshops-single-contact">|</p>
+		contactphone_stdWrap.wrap = <p class="workshops-single-contact">|</p>
 
 		addInfo_stdWrap.wrap = <div class="workshops-single-additional-info"> | </div>
 
@@ -222,8 +254,9 @@ plugin.workshops {
 		imageWrapIfAny = <div class="workshops-single-img"> | </div>
 
 		category_stdWrap.wrap = <div class="workshops-single-category"> | </div>
-		email_stdWrap.setContentToCurrent = 1
-		email_stdWrap.typolink.parameter.current = 1
+
+		email_stdWrap.typolink.parameter.field = contact_email
+
 		caption_stdWrap.wrap = <p class="workshops-single-imgcaption"> | </p>
 		caption_stdWrap.trim=1
 		# caption_stdWrap.required=1
@@ -232,6 +265,7 @@ plugin.workshops {
 	displaySingle.image {
 		file.maxW = {$plugin.workshops.singleMaxW}
 		file.maxH = {$plugin.workshops.singleMaxH}
+		path = {$plugin.workshops.singleImgPath}
 		wrap =
 		imageLinkWrap = 1
 		imageLinkWrap {
@@ -246,6 +280,7 @@ plugin.workshops {
 		}
 
 	}
+
 
 	# - - - - - - - - - - - rendering of LATEST workshops   - - - - - - - - - - -  #
 	displayLatest {
@@ -269,6 +304,7 @@ plugin.workshops {
 		stdWrap.spaceAfter = 0
 	}
 
+
 	# - - - - - - - - - -    rendering of LIST workshops    - - - - - - - - - - -  #
 	displayList {
 		age_stdWrap.age = 1
@@ -283,9 +319,16 @@ plugin.workshops {
 		subheader_stdWrap.stripHtml = 1
 		subheader_stdWrap.crop = 230 | ... | 1
 		subheader_stdWrap.ifEmpty.field = bodytext
-		author_stdWrap.wrap =
+
+		contact_stdWrap.typolink.parameter.field = contact_email
+		contact_stdWrap.wrap = <p class="workshops-list-contact">|</p>
+
+		itemLink_innerWrap = <span class="workshops-list-itemlink">|</span>
+
 		imageCount=1
 		imageWrapIfAny =
+
+		email_stdWrap.typolink.parameter.field = contact_email
 
 		category_stdWrap.wrap = <div class="workshops-list-category"> | </div>
 		imgAltTextField = imagecaption
@@ -296,13 +339,44 @@ plugin.workshops {
 		file.maxH = {$plugin.workshops.listMaxH}
 		imageLinkWrap = 1
 	}
+
+
+	# - - - - - - - - -    rendering of FORM for workshops    - - - - - - - - - -  #
+	displayRegform {
+		# cat=plugin.workshops//; type=small; label=Price decimals
+		priceDec = 2
+		# cat=plugin.workshops//; type=small; label=Price decimal point
+		priceDecPoint = ,
+		# cat=plugin.workshops//; type=small; label=Price thousand point
+		priceThousandPoint = .
+		# cat=plugin.workshops//; type=small; label=Registration mail recipient
+		regMailRecipient = your@workshop-administration.email
+		# cat=plugin.workshops//; type=small; label=form
+		form < tt_content.mailform.20
+		form {
+			data.field = regform_data
+			layout = <div class="workshops-regform-field"><span class="workshops-regform-label">###LABEL###</span>###FIELD###</div>
+			stdWrap.wrap =
+			stdWrap.editIcon = tx_workshops: bodytext
+			COMMENT.layout = <div class="workshops-regform-field">###LABEL###</div>
+		}
+		formWrapIfAny = <div class="workshops-regform"> | </div>
+	}
+
+
+	# - - - - - - - - -    rendering of CALENDAR for workshops    - - - - - - - - - -  #
+	displayCalendar {
+		# cat=plugin.workshops//; type=small; label=Months to display
+		monthsToDisplay = 2
+	}
+
+
 	# Example for overriding values from locallang.php with other values
 	_LOCAL_LANG.de {
-	# more = [weiterlesen...]
+		example = Beispiel (überschreibt den entsprechenden Wert in locallang.php)
 	}
+
 }
-
-
 
 
 # - - - - - - - - - -  display Archive in yearly periods - - - - - - - - -  #
@@ -310,8 +384,8 @@ plugin.workshops {
     # include the amenu script
 includeLibs.itemsAmenuUserFunc = EXT:workshops/res/workshops_amenuUserFunc2.php
     # call user function
-plugin.workshops.itemsAmenuUserFunc = user_processAmenu
+plugin.workshops.itemsAmenuUserFunc = user_procAmenu_workshops
 
+# - - - - - - - - - -  Plugin aktivieren - - - - - - - - -  #
 
-# test
 tt_content.list.20.workshops =< plugin.workshops

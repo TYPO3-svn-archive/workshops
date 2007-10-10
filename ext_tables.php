@@ -55,6 +55,7 @@ $TCA['tx_workshops_cat'] = Array (
 
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY]='layout,select_key,pages,recursive';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY]='pi_flexform';
+
 t3lib_extMgm::addPlugin(Array('LLL:EXT:workshops/locallang_tca.php:workshops',$_EXTKEY),'list_type');
 
 t3lib_extMgm::addStaticFile($_EXTKEY,'static/css/','default CSS-styles');
@@ -70,12 +71,6 @@ if (!$confArr['noCategoriesConf']) {
 t3lib_extMgm::addLLrefForTCAdescr('tx_workshops','EXT:workshops/locallang_csh_workshops.php');
 t3lib_extMgm::addLLrefForTCAdescr('tx_workshops_cat','EXT:workshops/locallang_csh_workshopsc.php');
 
-// So wird's in der 'mit_downlod'-Extension gemacht!
-// $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1']='layout';
-// t3lib_extMgm::addPlugin(Array('LLL:EXT:mit_download/locallang_db.php:tt_content.list_type', $_EXTKEY.'_pi1'),'list_type');
-
-
-
 
 // adds the possiblity to switch the use of the "StoragePid" (General Records Storage Page) for workshop categories
 if ($confArr['useStoragePid']) {
@@ -83,8 +78,6 @@ if ($confArr['useStoragePid']) {
 } else {
 	t3lib_extMgm::addPiFlexFormValue($_EXTKEY, 'FILE:EXT:workshops/flexform_ds_no_sPID.xml');
 }
-
-
 
 
 if (TYPO3_MODE=='BE')	{

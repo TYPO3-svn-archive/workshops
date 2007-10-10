@@ -2,7 +2,7 @@
 	/***************************************************************
 	*  Copyright notice
 	*
-	*  (c) 2005 Stefan Padberg <epost@stefan-padberg.de>
+	*  (c) 2005 Dipl.-Ing. Stefan Padberg <post@webskriptorium.com>
 	*  All rights reserved
 	*
 	*  This script is part of the TYPO3 project. The TYPO3 project is
@@ -45,7 +45,7 @@
 	/**
 	* 'CODE' for the 'workshops' extension.
 	*
-	* @author Stefan Padberg <epost@stefan-padberg.de>
+	* @author Dipl.-Ing. Stefan Padberg <post@webskriptorium.com>
 	* @package TYPO3
 	* @subpackage workshops
 	*/

@@ -207,6 +207,22 @@ plugin.workshops {
 		}
 
 
+		/*--------------------------------- workshops CALENDAR view  ---------------------------------*/
+		.workshops-display-calendar td {
+			text-align: right;
+		}
+
+		.workshops-display-calendar a {
+			text-decoration: none;
+		}
+
+		.workshops-display-calendar-sunday {
+			color: #f02020;
+		}
+
+
+
+
 		/*--------------------------------- workshops SINGLE view  ---------------------------------*/
 		.workshops-single-item {
 			padding:5px;
